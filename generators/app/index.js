@@ -12,6 +12,10 @@ var filesToExclude = [
     "metadata.json"
 ];
 
+var headers = {
+    "User-Agent": "Mozilla/"
+};
+
 // Use this json file for sorting through templates
 // https://functions.azure.com/api/templates?runtime=~1.0n
 // Chrome extension JSONView makes it easier to see it
@@ -69,7 +73,7 @@ module.exports = yeoman.Base.extend({
       var templatesUrl = "https://functions.azure.com/api/templates?runtime=~1.0";
       var fileName = "templates.json";
 
-      request({uri: templatesUrl, json: true}, (error, response, body) => {
+      request({uri: templatesUrl, json: true, headers: headers}, (error, response, body) => {
         if (!error && response.statusCode == 200) {
           var allTemplates = [];
           for (var i in body) {
@@ -92,7 +96,7 @@ module.exports = yeoman.Base.extend({
       var fileName = "templates.json";
       var templatesJson = {};
 
-      request({uri: templatesUrl, json: true}, (error, response, body) => {
+      request({uri: templatesUrl, json: true, headers: headers}, (error, response, body) => {
         if (!error && response.statusCode == 200) {
           templatesJson = body;
           var sortedTemplatesByLanguage = {};
@@ -137,7 +141,7 @@ module.exports = yeoman.Base.extend({
       var fileName = "templates.json";
       var templatesJson = {};
 
-      request({uri: templatesUrl, json: true}, (error, response, body) => {
+      request({uri: templatesUrl, json: true, headers: headers}, (error, response, body) => {
         if (!error && response.statusCode == 200) {
           templatesJson = body;
 
