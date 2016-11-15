@@ -13,7 +13,7 @@ var filesToExclude = [
 ];
 
 // Use this json file for sorting through templates
-// https://ahmelsayed.blob.core.windows.net/public/templates.json
+// https://functions.azure.com/api/templates?runtime=~1.0n
 // Chrome extension JSONView makes it easier to see it
 // https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en
 
@@ -66,7 +66,7 @@ module.exports = yeoman.Base.extend({
     //------------------------------
     if (this.answer.requestFunctionTemplates == ALL_TEMPLATES) {
       // templates.json url
-      var templatesUrl = "https://ahmelsayed.blob.core.windows.net/public/templates.json";
+      var templatesUrl = "https://functions.azure.com/api/templates?runtime=~1.0";
       var fileName = "templates.json";
 
       request({uri: templatesUrl, json: true}, (error, response, body) => {
@@ -88,7 +88,7 @@ module.exports = yeoman.Base.extend({
     //------------------------------
     if (this.answer.requestFunctionTemplates == TEMPLATES_BY_LANG) {
       // templates.json url
-      var templatesUrl = "https://ahmelsayed.blob.core.windows.net/public/templates.json";
+      var templatesUrl = "https://functions.azure.com/api/templates?runtime=~1.0";
       var fileName = "templates.json";
       var templatesJson = {};
 
@@ -133,7 +133,7 @@ module.exports = yeoman.Base.extend({
     //------------------------------
     if (this.answer.requestFunctionTemplates == TEMPLATES_BY_EVENT_TYPE) {
       // templates.json url
-      var templatesUrl = "https://ahmelsayed.blob.core.windows.net/public/templates.json";
+      var templatesUrl = "https://functions.azure.com/api/templates?runtime=~1.0";
       var fileName = "templates.json";
       var templatesJson = {};
 
@@ -240,7 +240,7 @@ module.exports = yeoman.Base.extend({
         this.log(err);
       });;
   },
-  
+
   //------------------------------
   //------------------------------
   // Function to download the files for the template
@@ -297,9 +297,9 @@ module.exports = yeoman.Base.extend({
               filesToDownload[file] = filesInTemplate[file];
             }
           }
-            
+
           // download the files
-          downloadFiles(filesToDownload); 
+          downloadFiles(filesToDownload);
 
           return 1;
         });
